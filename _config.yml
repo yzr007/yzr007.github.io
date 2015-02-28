@@ -5,20 +5,9 @@ paginate: 6
 paginate_path: page/:num
 
 blog:
-    name:                                                JunGu
-    description:                                         Good good study, day day up
-    title:                                               Jun Gu
-    url:                                                 http://2dxgujun.com/
-    duoshuo:                                             2dxgujun
-    tongji:                                              2dxgujun
-    qiniu:                                               # 七牛云地址
+    name:                                                Yang
+    description:                                         性疏狂，不思量，和风细雨，不动明王
+    
 author:
-    name:                                                JunGu
-    email:                                               2dxgujun@gmail.com
-    weibo:                                               http://weibo.com/2dxgujun
-    google-plus:                                         https://plus.google.com/113657331852211913645
-    github:                                              https://github.com/2dxgujun
-    logo:                                                /res/img/avatar.jpg
-    douban:
-        name:                                            db2dxgujun
-        key:                                             0f93d5c81935559d2ebb81584ba000d7
+    name:                                                Yang
+    email:                                               609560302@qq.com
