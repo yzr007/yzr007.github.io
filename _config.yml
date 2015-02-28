@@ -7,6 +7,8 @@ paginate_path: page/:num
 blog:
     name:                                                Yang
     description:                                         性疏狂，不思量，和风细雨，不动明王
+    title:                                               Jun Gu
+    url:                                                 http://yzr007.github.io/
     
 author:
     name:                                                Yang
@@ -15,3 +17,4 @@ author:
     google-plus:                                         https://plus.google.com/
     github:                                              https://github.com/yzr007
     logo:                                                /res/img/avatar.jpg
+	
