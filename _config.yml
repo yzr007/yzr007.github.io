@@ -10,6 +10,7 @@ blog:
     title:                                               Yang Blog
     url:                                                 http://yzr007.github.io/
     duoshuo:                                             Aad-yang
+    tongji:                                              Aad-yang
     qiniu:                                               # 七牛云地址
 author:
     name:                                                Yang
