@@ -1,0 +1,29 @@
+---
+layout: post
+title: 博客园博客地址
+category: Diary
+date: 2015-03-05
+---
+标签（空格分隔）： android 博客园
+
+---
+
+懒得博客搬家了，之前的博客也没有好好写，含金量也不高，就不一篇一篇搬到新博客了，在这列个表格好了
+*博客园博客地址*
+----------------
+| 博文 |
+| --------|
+| [关于android定位的坐标系问题](http://www.cnblogs.com/lihualuo/p/3527495.html)|
+| [Android知识整理（1） Pull解析器解析XML](http://www.cnblogs.com/lihualuo/p/3556093.html)|
+| [Android知识整理（2）【转】android中三种onClick事件的实现方式与对比](http://www.cnblogs.com/lihualuo/p/3654152.html) |
+| [Android知识整理（3） 两种自定义样式的Checkbox](http://www.cnblogs.com/lihualuo/p/3665847.html)|
+| [Android知识整理（4） 关于Android应用的退出](http://www.cnblogs.com/lihualuo/p/3671000.html)|
+| [Android知识整理（5） apk反编译与代码混淆](http://www.cnblogs.com/lihualuo/p/3688688.html) |
+| [CAS单点登录客户端配置](http://www.cnblogs.com/lihualuo/p/3684744.html)|
+| [【转载】ViewHolder的简洁写法 ](http://www.cnblogs.com/lihualuo/p/4173900.html)|
+| [【转载】 Android App 内存泄露之Thread ](http://www.cnblogs.com/lihualuo/p/4181843.html) |
+| [【转载】通用 application 彻底退出应用 获崩溃异常,保存错误日志,并重启应用 ](http://www.cnblogs.com/lihualuo/p/4184563.html)|
+
+
+
+
