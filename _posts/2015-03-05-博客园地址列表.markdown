@@ -12,7 +12,7 @@ date: 2015-03-05
 *博客园博客地址*
 ----------------
 | 博文 |
-| --------|
+| :--------|
 | [关于android定位的坐标系问题](http://www.cnblogs.com/lihualuo/p/3527495.html)|
 | [Android知识整理（1） Pull解析器解析XML](http://www.cnblogs.com/lihualuo/p/3556093.html)|
 | [Android知识整理（2）【转】android中三种onClick事件的实现方式与对比](http://www.cnblogs.com/lihualuo/p/3654152.html) |
