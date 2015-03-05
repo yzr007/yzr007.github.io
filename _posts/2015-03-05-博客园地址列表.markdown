@@ -1,12 +1,10 @@
 ---
 layout: post
 title: 博客园博客地址
-category: Diary
+category: other
 date: 2015-03-05
 ---
-标签（空格分隔）： android 博客园
 
----
 
 懒得博客搬家了，之前的博客也没有好好写，含金量也不高，就不一篇一篇搬到新博客了，在这列个表格好了
 *博客园博客地址*

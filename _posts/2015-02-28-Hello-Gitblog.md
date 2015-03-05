@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 博客搭建成功，撒花~~~
-category: Diary
+category: other
 date: 2015-02-28
 ---
 
