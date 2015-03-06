@@ -7,7 +7,7 @@ date: 2015-03-05
 
 应用新增了一个banner作为搞活动的入口，本来是放在listview的父布局上的，老板说要让banner和listview一起滚动，就将banner单独放在一个layout文件里，通过inflater动态加载并addHeaderView到listview里，但是在隐藏banner时出现了问题。
 通常我们要隐藏View的时候会使用
-```c
+```Java
 view.setVisibility(View.GONE)
 //或者
 view.setVisibility(View.INVISIBLE)
