@@ -1,10 +1,8 @@
-﻿highlighter: pygments
+﻿markdown: rdiscount
+highlighter: pygments
 permalink: post/:year/:month/:day/:title.html
 paginate: 6
 paginate_path: page/:num
-markdown: redcarpet
-redcarpet:
-    extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
 
 blog:
     name:                                                Yang
