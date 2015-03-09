@@ -183,31 +183,22 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 * imageScaleType(ImageScaleType imageScaleType)
 
 是设置图片的缩放方式
-
 EXACTLY :图像将完全按比例缩小的目标大小
-
 EXACTLY_STRETCHED:图片会缩放到目标大小完全
-
 IN_SAMPLE_INT:图像将被二次采样的整数倍
-
 IN_SAMPLE_POWER_OF_2:图片将降低2倍，直到下一减少步骤，使图像更小的目标大小
-
 NONE:图片不会调整
 
 * displayer(BitmapDisplayer displayer)
 
 是设置图片的显示方式
-
-
 RoundedBitmapDisplayer（int roundPixels）设置圆角图片
-
 FakeBitmapDisplayer（）这个类什么都没做
-
 FadeInBitmapDisplayer（int durationMillis）设置图片渐显的时间
-
 SimpleBitmapDisplayer()正常显示一张图片
 
 #加载图片
+
 * 普通带配置的加载
 
 ``` java
