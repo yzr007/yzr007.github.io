@@ -99,6 +99,7 @@ ImageLoaderConfiguration config = new ImageLoaderConfiguration
 .diskCache(new UnlimitedDiskCache(cacheDir))
 
 ```
+
 是用来定义外存缓存路径的，cacheDir是File，可以这样来配置：
 
 ``` java
