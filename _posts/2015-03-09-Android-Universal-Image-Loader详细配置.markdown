@@ -180,16 +180,16 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 ```
 ##在DisplayImageOptions配置中
 
-* imageScaleType(ImageScaleType imageScaleType)
+* imageScaleType(ImageScaleType imageScaleType)  
 
 是设置图片的缩放方式
-EXACTLY :图像将完全按比例缩小的目标大小
-EXACTLY_STRETCHED:图片会缩放到目标大小完全
-IN_SAMPLE_INT:图像将被二次采样的整数倍
-IN_SAMPLE_POWER_OF_2:图片将降低2倍，直到下一减少步骤，使图像更小的目标大小
-NONE:图片不会调整
+EXACTLY 图像将完全按比例缩小的目标大小
+EXACTLY_STRETCHED  图片会缩放到目标大小完全
+IN_SAMPLE_INT  图像将被二次采样的整数倍
+IN_SAMPLE_POWER_OF_2  图片将降低2倍，直到下一减少步骤，使图像更小的目标大小
+NONE  图片不会调整
 
-* displayer(BitmapDisplayer displayer)
+* displayer(BitmapDisplayer displayer)  
 
 是设置图片的显示方式
 RoundedBitmapDisplayer（int roundPixels）设置圆角图片
