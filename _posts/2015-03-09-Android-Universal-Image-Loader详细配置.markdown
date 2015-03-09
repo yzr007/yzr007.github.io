@@ -179,19 +179,33 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 		
 ```
 ##在DisplayImageOptions配置中
+
 * imageScaleType(ImageScaleType imageScaleType)
+
 是设置图片的缩放方式
-              EXACTLY :图像将完全按比例缩小的目标大小
-              EXACTLY_STRETCHED:图片会缩放到目标大小完全
-              IN_SAMPLE_INT:图像将被二次采样的整数倍
-              IN_SAMPLE_POWER_OF_2:图片将降低2倍，直到下一减少步骤，使图像更小的目标大小
-              NONE:图片不会调整
+
+EXACTLY :图像将完全按比例缩小的目标大小
+
+EXACTLY_STRETCHED:图片会缩放到目标大小完全
+
+IN_SAMPLE_INT:图像将被二次采样的整数倍
+
+IN_SAMPLE_POWER_OF_2:图片将降低2倍，直到下一减少步骤，使图像更小的目标大小
+
+NONE:图片不会调整
+
 * displayer(BitmapDisplayer displayer)
+
 是设置图片的显示方式
-              RoundedBitmapDisplayer（int roundPixels）设置圆角图片
-              FakeBitmapDisplayer（）这个类什么都没做
-              FadeInBitmapDisplayer（int durationMillis）设置图片渐显的时间
-　　　　　　　SimpleBitmapDisplayer()正常显示一张图片
+
+
+RoundedBitmapDisplayer（int roundPixels）设置圆角图片
+
+FakeBitmapDisplayer（）这个类什么都没做
+
+FadeInBitmapDisplayer（int durationMillis）设置图片渐显的时间
+
+SimpleBitmapDisplayer()正常显示一张图片
 
 #加载图片
 * 普通带配置的加载
@@ -255,13 +269,21 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
 ```
 
 * Acceptable URIs examples 可接受的URIs
+
 "http://site.com/image.png" // from Web
+
 "file:///mnt/sdcard/image.png" // from SD card
+
 "file:///mnt/sdcard/video.mp4" // from SD card (video thumbnail)
+
 "content://media/external/images/media/13" // from content provider
+
 "content://media/external/video/media/13" // from content provider (video thumbnail)
+
 "assets://image.png" // from assets
+
 "drawable://" + R.drawable.img // from drawables (non-9patch images)
+
 
 #如果出现OOM
 * 减少配置之中线程池的大小，(.threadPoolSize).推荐1-5；
