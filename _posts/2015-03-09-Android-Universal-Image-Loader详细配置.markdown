@@ -100,18 +100,15 @@ ImageLoaderConfiguration config = new ImageLoaderConfiguration
 
 ```
 是用来定义外存缓存路径的，cacheDir是File，可以这样来配置：
+
 ``` java
-
 File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "MyAppName/Cache");  
-
 ```
 
 * diskCacheFileNameGenerator
 
 ``` java
-
 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-
 ```
 是定义缓存文件的定义方式
 可以调用的方法有 
