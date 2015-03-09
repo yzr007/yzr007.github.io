@@ -178,6 +178,7 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 		.build();//构建完成  
 		
 ```
+
 ##在DisplayImageOptions配置中
 
 * imageScaleType(ImageScaleType imageScaleType)  
