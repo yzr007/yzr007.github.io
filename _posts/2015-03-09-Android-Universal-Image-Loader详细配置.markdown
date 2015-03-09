@@ -9,9 +9,12 @@ Android-Universal-Image-Loader是目前业内使用最广泛的异步图片加�
 导入jar包后，我们需要进行一些配置来帮助我们使用
 #权限配置
 在清单文件中加入以下权限
+
 ``` xml
+
 <uses-permission android:name="android.permission.INTERNET" />  
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  
+
 ```
 #ImageLoaderConfiguration配置
 *github文档上提供的帮助：*
@@ -19,7 +22,9 @@ Android-Universal-Image-Loader是目前业内使用最广泛的异步图片加�
 ImageLoader **Configuration (`ImageLoaderConfiguration`) is global** for application. You should set it once.
 
 All options in Configuration builder are optional. Use only those you really want to customize.<br />*See default values for config options in [Java docs for every option](https://github.com/nostra13/Android-Universal-Image-Loader/blob/master/library/src/com/nostra13/universalimageloader/core/ImageLoaderConfiguration.java#L199-599).*
+
 ``` java
+
 // DON'T COPY THIS CODE TO YOUR PROJECT! This is just example of ALL options using.
 // See the sample project how to use ImageLoader correctly.
 File cacheDir = StorageUtils.getCacheDirectory(context);
@@ -44,14 +49,20 @@ ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
 		.defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
 		.writeDebugLogs()
 		.build();
+		
 ```
 
 可以看出，**Configuration (`ImageLoaderConfiguration`) is global**，我们可以在application中进行配置，并完成初始化
+
 ``` java
+
 ImageLoader.getInstance().init(config);
+
 ```
 *ImageLoaderConfiguration配置注释*
+
 ``` java
+
 ImageLoaderConfiguration config = new ImageLoaderConfiguration  
     .Builder(context)  
     .memoryCacheExtraOptions(480, 800) // max width, max height，即保存的每个缓存文件的最大长宽  
@@ -69,32 +80,47 @@ ImageLoaderConfiguration config = new ImageLoaderConfiguration
     .imageDownloader(new BaseImageDownloader(context, 5 * 1000, 30 * 1000)) // connectTimeout (5 s), readTimeout (30 s)超时时间  
     .writeDebugLogs() // Remove for release app  
     .build();//开始构建  
+	
 ```
 ##在ImageLoaderConfiguration的配置中
 * memoryCache
+
 ``` java
+
 .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+
 ```
 是配置内存缓存的策略，默认的是*LruMemoryCache*(遵循Lru算法,强引用bitmap),还可以使用*UsingFreqLimitedMemoryCache*（如果缓存的图片总量超过限定值，先删除使用频率最小的bitmap，强引用与弱引用结合），*WeakMemoryCache*（弱引用缓存，bitmap的总大小没有限制，唯一不足的地方就是不稳定，缓存的图片容易被回收掉），也可以使用自己实现的缓存策略。
 
 * diskCache
+
 ``` java
+
 .diskCache(new UnlimitedDiskCache(cacheDir))
+
 ```
 是用来定义外存缓存路径的，cacheDir是File，可以这样来配置：
 ``` java
+
 File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "MyAppName/Cache");  
+
 ```
 
 * diskCacheFileNameGenerator
+
 ``` java
+
 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+
 ```
 是定义缓存文件的定义方式
 可以调用的方法有 
+
 ``` java
+
 new Md5FileNameGenerator() //使用MD5对UIL进行加密命名
 new HashCodeFileNameGenerator()//使用HASHCODE对UIL进行加密命名
+
 ```
 **已经进行disk缓存的网络图片，如果文件名（url）没有改变，不会再去请求下载**
 
@@ -105,7 +131,9 @@ new HashCodeFileNameGenerator()//使用HASHCODE对UIL进行加密命名
 Display Options can be applied to every display task (`ImageLoader.displayImage(...)` call).
 
 **Note:** If Display Options wasn't passed to `ImageLoader.displayImage(...)`method then default Display Options from configuration (`ImageLoaderConfiguration.defaultDisplayImageOptions(...)`) will be used.
+
 ``` java
+
 // DON'T COPY THIS CODE TO YOUR PROJECT! This is just example of ALL options using.
 // See the sample project how to use ImageLoader correctly.
 DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -126,9 +154,13 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 		.displayer(new SimpleBitmapDisplayer()) // default
 		.handler(new Handler()) // default
 		.build();
+		
 ```
+
 *DisplayImageOptions配置注释*
+
 ``` java
+
 DisplayImageOptions options = new DisplayImageOptions.Builder()  
 		.showImageOnLoading(R.drawable.ic_launcher) //设置图片在下载期间显示的图片  
 		.showImageForEmptyUri(R.drawable.ic_launcher)//设置图片Uri为空或是错误的时候显示的图片  
@@ -146,6 +178,7 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 		.displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少  
 		.displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间  
 		.build();//构建完成  
+		
 ```
 ##在DisplayImageOptions配置中
 * imageScaleType(ImageScaleType imageScaleType)
@@ -164,11 +197,16 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 
 #加载图片
 * 普通带配置的加载
+
 ``` java
+
 ImageLoader.getInstance().displayImage(imageUri, imageView，options); //imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件，options代表DisplayImageOptions配置文件
+
 ```
 * 带加载情况监听的加载
+
 ``` java
+
 imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener() {  
     @Override  
     public void onLoadingStarted() {  
@@ -187,9 +225,12 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
        //加载取消的时候执行  
   
     }});  
+	
 ```
 * 带进度条的加载
+
 ``` java
+
 imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener() {  
     @Override  
     public void onLoadingStarted() {  
@@ -212,6 +253,7 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
       //在这里更新 ProgressBar的进度信息  
       }  
     });  
+	
 ```
 
 * Acceptable URIs examples 可接受的URIs
@@ -232,6 +274,9 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
 
 
 #参考链接
+
 [Android-Universal-Image-Loader,nostra13](https://github.com/nostra13/Android-Universal-Image-Loader)
+
 [Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）,vipra](http://blog.csdn.net/vipzjyno1/article/details/23206387)
+
 [从源代码分析Android-Universal-Image-Loader的缓存处理机制,陈哈哈](http://www.cnblogs.com/kissazi2/p/3931400.html)
