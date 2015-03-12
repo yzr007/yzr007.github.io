@@ -17,7 +17,9 @@ Android-Universal-Image-Loader是目前业内使用最广泛的异步图片加�
 
 ```
 #ImageLoaderConfiguration配置
+
 *github文档上提供的帮助：*
+<!-- more -->
 
 ImageLoader **Configuration (`ImageLoaderConfiguration`) is global** for application. You should set it once.
 
@@ -301,3 +303,5 @@ imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener(
 [Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）,vipra](http://blog.csdn.net/vipzjyno1/article/details/23206387)
 
 [从源代码分析Android-Universal-Image-Loader的缓存处理机制,陈哈哈](http://www.cnblogs.com/kissazi2/p/3931400.html)
+
+本文出自[Yang](/)，转载时请注明出处及相应链接。

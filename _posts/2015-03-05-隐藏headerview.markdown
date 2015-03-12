@@ -20,6 +20,8 @@ view.setVisibility(View.INVISIBLE)
 前者是隐藏的同时会重新布局，不再占用界面上的空间，后者只是单纯隐藏但是原来占用的空间会被空白填充。
 这里，我给出banner的布局文件
 
+<!-- more -->
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 
@@ -98,3 +100,5 @@ view.setPadding(0, -view.getHeight(), 0, 0);
 ```
 只要在外层嵌套一层空的父布局，直接设为GONE，完美隐藏，不会再有讨厌的空白占地方了。
 原理的话，笔者说可能是setVisibility(View.GONE)对于 **根布局**是无效的，我还没有去求证，先放在这里，等我求证之后再补充。
+
+本文出自[Yang](/)，转载时请注明出处及相应链接。
