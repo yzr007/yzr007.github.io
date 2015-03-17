@@ -55,12 +55,15 @@ cond2(no)->op3
 好的，此时我们可以将开屏广告图设计为：
 ![开屏广告示例图](/res/img/开屏广告示例图.png)
 图中红色部分为开屏广告内容，蓝色部分为无用的背景，并将开屏广告图片的容器设置为:
+
 ``` xml
+
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:scaleType="fitStart"
 
 ```
+
 
 这样，在[1.5,1.78]的区间内，都能显示完整的开屏广告内容。
 
