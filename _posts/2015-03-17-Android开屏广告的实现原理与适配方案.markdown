@@ -19,23 +19,6 @@ date: 2015-03-17
 
 ![开屏广告原理](/res/img/开屏广告原理.png)
 
-```flow
-st=>start: 打开应用
-cond1=>condition: 是否缓存图片为null?
-op1=>operation: 请求图片url
-op2=>operation: 加载图片
-op3=>operation: 重新加载图片并缓存
-cond2=>condition: 是否图片url与缓存一致?
-e=>end
-
-st->cond1->op2->op1->cond2->op3->e
-cond1(yes)->op1
-cond1(no)->op2
-cond2(yes)->e
-cond2(no)->op3
-```
-
-
 
 开屏广告实现起来容易，但是适配却是难题。因为开屏广告通常是一张带文字的铺满手机全屏的图片，android手机碎片化严重，尺寸、dpi与分辨率各种各样，分辨率不同所以长宽比也不同，目前主流的有15:9、16:9等，还有早期的4:3等。这种情况带来的问题就是，我们将开屏广告的图片容器设置为长宽match_parent后，由于图片分辨率与手机分辨率的差异，图片中的文字会出现明显的走形。
 
