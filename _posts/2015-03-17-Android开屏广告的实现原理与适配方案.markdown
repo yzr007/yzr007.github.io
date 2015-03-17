@@ -4,6 +4,8 @@ title: Android开屏广告的实现原理与适配方案
 category: android
 date: 2015-03-17
 ---
+
+
 实现原理：
 -----------
 开屏广告目前很多应用都在使用，["约饭"](http://shouji.baidu.com/soft/item?docid=7553826)为了推广自家的线上活动也提出了增加开屏广告的需求，所以就研究了一下。整理保存，备忘。
@@ -63,14 +65,11 @@ cond2(no)->op3
 
 ``` xml
 
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:scaleType="fitStart"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:scaleType="fitStart"
 
 ```
-
 
 这样，在[1.5,1.78]的区间内，都能显示完整的开屏广告内容。
 
