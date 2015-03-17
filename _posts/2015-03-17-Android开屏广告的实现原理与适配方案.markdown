@@ -14,12 +14,11 @@ date: 2015-03-17
 
 ###流程图：
 
+
 <!-- more -->
 
 
-
-``` flow
-
+```flow
 st=>start: 打开应用
 cond1=>condition: 是否缓存图片为null?
 op1=>operation: 请求图片url
@@ -33,7 +32,6 @@ cond1(yes)->op1
 cond1(no)->op2
 cond2(yes)->e
 cond2(no)->op3
-
 ```
 
 
