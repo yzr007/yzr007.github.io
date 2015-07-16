@@ -5,9 +5,12 @@ category: android
 date: 2015-07-16
 ---
 
-最近换了工作，由于工作中要使用一些自己以前不是很了解的知识，就没有时间更新博客了。由于最近做了一些很有意思的小demo，不吐不快，再加上还是认为技术需要沉淀和梳理，所以再次把写博客这件事拾起来。
+最近换了工作，由于工作中要使用一些自己以前不是很了解的知识，就没有时间更新博客了。
+
+由于最近做了一些很有意思的小demo，不吐不快，再加上还是认为技术需要沉淀和梳理，所以再次把写博客这件事拾起来。
 已经不是第一次遇到设计师要求使用毛玻璃效果了，但是做带毛玻璃效果背景的Dialog还是第一次。考虑实现的逻辑，弹出Dialog之前对当前屏幕截图，做高斯模糊处理，设为Dialog背景，显示Dialog。
 ###屏幕截图核心代码
+
 ``` java
 public static Bitmap takeScreenShot(Activity activity) { 
         // View是你需要截图的View 
@@ -36,17 +39,16 @@ public static Bitmap takeScreenShot(Activity activity) {
         return b; 
     } 
 ```
+
 做压缩的目的是丢弃一部分像素点，保证做高斯模糊处理时的效率。既然要做高斯模糊，那么就意味着图片对精度的要求极低。
 
 ###FastBlur类(高斯模糊)
+
 这个类来自于[开源项目StackBlur](https://github.com/kikoso/android-stackblur)的早期源码，感兴趣的可以使用最新的源码来替换。
+
 ``` java
 public class FastBlur {
-	/**
-	 * Created by paveld on 3/6/14.
-	 */
-
-	 
+	
 	    public static Bitmap doBlur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
 	 
 	        // Stack Blur v1.0 from
@@ -286,15 +288,17 @@ public class FastBlur {
 ```
 
 Dialog的布局我就不赘述了，另外可以根据需要修改Style
+
 ``` xml
 <item name="android:windowFullscreen">false</item> 
 <item name="android:windowNoTitle">true</item>  
 <item name="android:windowBackground">@android:color/transparent</item>
 ```
+
 得到自己想要的效果。
 
 最后，附上效果图
-![普通背景](/res/img/blur1.png)![毛玻璃效果背景](/res/img/blur2.png)
+![普通背景](/res/img/blur1.png =320x240)![毛玻璃效果背景](/res/img/blur2.png =320x240)
 
 
 本文出自[Yang](/)，转载时请注明出处及相应链接。
