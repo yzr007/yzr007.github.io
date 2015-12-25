@@ -55,11 +55,13 @@ date: 2015-12-26
 ```
 代码讲的很清晰，遍历ViewGroup，拿到里面的NumberPicker，重设NumberPickerd的宽度和margin。可能有人不明白为什么取NumberPicker，因为DatePicker与TimePicker就是NumberPicker拼成的。
 然后，我们做下适配
+
 ``` java
     int picker_width = (screen_width-margin)/5-30;//年月日时分5项
     float text_size = picker_width/4;
     Utils.resizeNumberPicker(picker, picker_width);
 ```
+
 ``` java
     public static void resizeNumberPicker(NumberPicker np,int width){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -67,12 +69,14 @@ date: 2015-12-26
         np.setLayoutParams(params);
     }
 ```
+
 打完收工......怎么可能！！！这么写还有点干货么？？！！上面只是开胃甜品，下面是正餐。
 
 ##纪念该死的MX4
 
 跑到MX4上，我懵逼了，原生DatePicker被改成了好大一个日历！！！
 没办法了，只能用NumberPicker去拼一个了
+
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -218,6 +222,8 @@ date: 2015-12-26
         android:src="@mipmap/btn_queren" />
 </LinearLayout>
 ```
+
+
 ``` java
         picker_year = (NumberPicker) layout.findViewById(R.id.picker_year);
         picker_month = (NumberPicker) layout.findViewById(R.id.picker_month);
@@ -262,11 +268,13 @@ date: 2015-12-26
         ImageView img_submit = (ImageView) layout.findViewById(R.id.submit);
         img_submit.setOnClickListener(onClickListener);
 ```
+
 并排放5个NumberPicker，伪装成DatePicker与TimePicker。
 然后用上面提到的方法缩小到能完美显示。
 但是，还有一个问题，字体大小！！！
 OK，NumberPicker是变小了，但是里面的数字显示不全了能叫完美显示么?怎么办？Read The Fucking Source Code！
 NumberPicker的源码中有一个对象叫mSelectorWheelPaint，滑轮上的字都是它画的，这还不够，点击NumberPicker中间是会出现一个EditText的，不能忘了它
+
 ``` java
         public static void setChildTextSize(ViewGroup root,float size) {
 
@@ -289,6 +297,7 @@ NumberPicker的源码中有一个对象叫mSelectorWheelPaint，滑轮上的字�
         }
 }
 ```
+
 通过Java反射机制，拿到mSelectorWheelPaint，mInputText这两个对象，尽情的setTextSize吧。
 
 一点小技巧，比较话唠，写了很长，有时候对原生控件做一点小改动，就能完美得完成我们的需求，并不需要去自定义View写一大堆代码。
