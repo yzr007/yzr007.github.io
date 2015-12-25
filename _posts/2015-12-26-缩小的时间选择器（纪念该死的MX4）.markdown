@@ -57,17 +57,21 @@ date: 2015-12-26
 然后，我们做下适配
 
 ``` java
+
     int picker_width = (screen_width-margin)/5-30;//年月日时分5项
     float text_size = picker_width/4;
     Utils.resizeNumberPicker(picker, picker_width);
+    
 ```
 
 ``` java
+
     public static void resizeNumberPicker(NumberPicker np,int width){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(15, 5, 15, 5);
         np.setLayoutParams(params);
     }
+    
 ```
 
 打完收工......怎么可能！！！这么写还有点干货么？？！！上面只是开胃甜品，下面是正餐。
@@ -78,6 +82,7 @@ date: 2015-12-26
 没办法了，只能用NumberPicker去拼一个了
 
 ``` xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialog"
@@ -221,10 +226,12 @@ date: 2015-12-26
         android:layout_marginTop="30dp"
         android:src="@mipmap/btn_queren" />
 </LinearLayout>
+
 ```
 
 
 ``` java
+
         picker_year = (NumberPicker) layout.findViewById(R.id.picker_year);
         picker_month = (NumberPicker) layout.findViewById(R.id.picker_month);
         picker_day = (NumberPicker) layout.findViewById(R.id.picker_day);
@@ -267,6 +274,7 @@ date: 2015-12-26
 
         ImageView img_submit = (ImageView) layout.findViewById(R.id.submit);
         img_submit.setOnClickListener(onClickListener);
+        
 ```
 
 并排放5个NumberPicker，伪装成DatePicker与TimePicker。
@@ -276,6 +284,7 @@ OK，NumberPicker是变小了，但是里面的数字显示不全了能叫完美
 NumberPicker的源码中有一个对象叫mSelectorWheelPaint，滑轮上的字都是它画的，这还不够，点击NumberPicker中间是会出现一个EditText的，不能忘了它
 
 ``` java
+
         public static void setChildTextSize(ViewGroup root,float size) {
 
 
@@ -296,6 +305,7 @@ NumberPicker的源码中有一个对象叫mSelectorWheelPaint，滑轮上的字�
             e.printStackTrace();
         }
 }
+
 ```
 
 通过Java反射机制，拿到mSelectorWheelPaint，mInputText这两个对象，尽情的setTextSize吧。
