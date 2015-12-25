@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 缩小的时间选择器（纪念该死的MX4）
 category: android
