@@ -1,0 +1,301 @@
+﻿---
+layout: post
+title: 缩小的时间选择器（纪念该死的MX4）
+category: android
+date: 2015-12-26
+---
+
+首先，庆祝我司婴儿喂养记录类应用“萌萌记”登陆各大应用市场，时间仓促，水平有限，多有不足，企望海涵。（做出伟大产品的公司，自我评价往往以“批评”和“自嘲”为主，而不是以“肯定”和“表扬”为主。我认识的杰出成就人士都认为自己做的不好，之所以能成功只是因为其他人做的更差。——Paul Graham，哈哈哈）
+言归正传，android应用中日期选择器与时间选择器用的场景很多，但是原生控件并不好用。例如，需求是弹出一个Dialog，在Dialog上并排显示DatePicker与TimePicker，会发现大多屏幕放不下。此时，我们百度一下（别吐槽我用百度，百度只是个孩子），会得到
+<!-- more -->
+``` java
+    /**
+     * 调整FrameLayout大小
+     * @param tp
+     */
+    public static void resizePikcer(FrameLayout tp){
+        List<NumberPicker> npList = findNumberPicker(tp);
+        for(NumberPicker np:npList){
+            resizeNumberPicker(np);
+        }
+    }
+    /**
+     * 得到viewGroup里面的numberpicker组件
+     * @param viewGroup
+     * @return
+     */
+    private static List<NumberPicker> findNumberPicker(ViewGroup viewGroup){
+        List<NumberPicker> npList = new ArrayList<NumberPicker>();
+        View child = null;
+        if(null != viewGroup){
+            for(int i = 0;i<viewGroup.getChildCount();i++){
+                child = viewGroup.getChildAt(i);
+                if(child instanceof NumberPicker){
+                    npList.add((NumberPicker)child);
+                }
+                else if(child instanceof LinearLayout){
+                    List<NumberPicker> result = findNumberPicker((ViewGroup)child);
+                    if(result.size()>0){
+                        return result;
+                    }
+                }
+            }
+        }
+        return npList;
+    }
+        /*
+		 * 调整numberpicker大小
+		 */
+    private static void resizeNumberPicker(NumberPicker np){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(15, 5, 15, 5);
+        np.setLayoutParams(params);
+    }
+
+```
+代码讲的很清晰，遍历ViewGroup，拿到里面的NumberPicker，重设NumberPickerd的宽度和margin。可能有人不明白为什么取NumberPicker，因为DatePicker与TimePicker就是NumberPicker拼成的。
+然后，我们做下适配
+``` java
+    int picker_width = (screen_width-margin)/5-30;//年月日时分5项
+    float text_size = picker_width/4;
+    Utils.resizeNumberPicker(picker, picker_width);
+```
+``` java
+    public static void resizeNumberPicker(NumberPicker np,int width){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(15, 5, 15, 5);
+        np.setLayoutParams(params);
+    }
+```
+打完收工......怎么可能！！！这么写还有点干货么？？！！上面只是开胃甜品，下面是正餐。
+
+##纪念该死的MX4
+
+跑到MX4上，我懵逼了，原生DatePicker被改成了好大一个日历！！！
+没办法了，只能用NumberPicker去拼一个了
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_shape"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="年"
+                    android:textColor="@color/font_color_1"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="月"
+                    android:textColor="@color/font_color_1"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="日"
+                    android:textColor="@color/font_color_1"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="时"
+                    android:textColor="@color/font_color_1"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="分"
+                    android:textColor="@color/font_color_1"
+                    android:textSize="16sp"/>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
+                <NumberPicker
+                    android:id= "@+id/picker_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
+                    <NumberPicker
+                        android:id= "@+id/picker_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
+                    <NumberPicker
+                        android:id= "@+id/picker_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
+                    <NumberPicker
+                        android:id= "@+id/picker_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
+                    <NumberPicker
+                        android:id= "@+id/picker_minute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/submit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/btn_queren" />
+</LinearLayout>
+```
+``` java
+        picker_year = (NumberPicker) layout.findViewById(R.id.picker_year);
+        picker_month = (NumberPicker) layout.findViewById(R.id.picker_month);
+        picker_day = (NumberPicker) layout.findViewById(R.id.picker_day);
+        picker_hour = (NumberPicker) layout.findViewById(R.id.picker_hour);
+        picker_minute = (NumberPicker) layout.findViewById(R.id.picker_minute);
+        picker_year.setMaxValue(2020);
+        picker_year.setMinValue(2010);
+        if(year<=2020 && year>=2010){
+            picker_year.setValue(year);
+        }else{
+            picker_year.setValue(2015);
+        }
+
+
+        picker_month.setFormatter(new timeFormatter());
+        picker_month.setMaxValue(12);
+        picker_month.setMinValue(1);
+        picker_month.setValue(month);
+
+        picker_month.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i2) {
+                picker_day.setMaxValue(DateTimeUtils.getMaxDaysofMonth(year, numberPicker.getValue() ));
+            }
+        });
+        picker_day.setFormatter(new timeFormatter());
+        picker_day.setMaxValue(DateTimeUtils.getMaxDaysofMonth(year,month));
+        picker_day.setMinValue(1);
+        picker_day.setValue(day);
+
+        picker_hour.setFormatter(new timeFormatter());
+        picker_hour.setMaxValue(23);
+        picker_hour.setMinValue(0);
+        picker_hour.setValue(hour);
+
+        picker_minute.setFormatter(new timeFormatter());
+        picker_minute.setMaxValue(59);
+        picker_minute.setMinValue(0);
+        picker_minute.setValue(minute);
+
+        ImageView img_submit = (ImageView) layout.findViewById(R.id.submit);
+        img_submit.setOnClickListener(onClickListener);
+```
+并排放5个NumberPicker，伪装成DatePicker与TimePicker。
+然后用上面提到的方法缩小到能完美显示。
+但是，还有一个问题，字体大小！！！
+OK，NumberPicker是变小了，但是里面的数字显示不全了能叫完美显示么?怎么办？Read The Fucking Source Code！
+NumberPicker的源码中有一个对象叫mSelectorWheelPaint，滑轮上的字都是它画的，这还不够，点击NumberPicker中间是会出现一个EditText的，不能忘了它
+``` java
+        public static void setChildTextSize(ViewGroup root,float size) {
+
+
+        Field field;
+        try {
+            field = root.getClass().getDeclaredField("mSelectorWheelPaint");
+
+            field.setAccessible(true);
+            Paint paint = (Paint) field.get(root);
+            paint.setTextSize(size);
+            field = root.getClass().getDeclaredField("mInputText");
+            field.setAccessible(true);
+            EditText editText = (EditText) field.get(root);
+            editText.setTextSize(ScreenUtils.px2dp(MilkingApplication.getInstance().getApplicationContext(),size));
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+}
+```
+通过Java反射机制，拿到mSelectorWheelPaint，mInputText这两个对象，尽情的setTextSize吧。
+
+一点小技巧，比较话唠，写了很长，有时候对原生控件做一点小改动，就能完美得完成我们的需求，并不需要去自定义View写一大堆代码。
+完整的项目我会找时间整理后上传到Github，今天就算了，带了笔记本，没带电源适配器...
+
+
+本文出自[Yang](/)，转载时请注明出处及相应链接。
+
+
+
