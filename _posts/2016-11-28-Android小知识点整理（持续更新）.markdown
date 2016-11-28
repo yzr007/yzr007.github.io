@@ -11,7 +11,7 @@ date: 2016-11-28
 
 |序号|知识点|网址|
 |-----|:----|:----|
-|1|asset文件夹与raw文件夹的区别|(http://www.jb51.net/article/38531.htm)|
+|1|asset文件夹与raw文件夹的区别|[](http://www.jb51.net/article/38531.htm)|
 
 内容
 ===
