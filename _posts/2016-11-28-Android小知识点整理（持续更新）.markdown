@@ -11,7 +11,7 @@ date: 2016-11-28
 
 |序号|知识点|网址|
 |-----|:----|:----|
-|1|asset文件夹与raw文件夹的区别|[http://www.jb51.net/article/38531.htm]|
+|1|asset文件夹与raw文件夹的区别|(http://www.jb51.net/article/38531.htm)|
 
 内容
 ===
@@ -25,7 +25,7 @@ date: 2016-11-28
 <!--more-->
 ## res/raw和assets的不同点：
 
-1. res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.filename；assets文件夹下的文件不会被映射到R.java中，访问的时候需要AssetManager类。
+1. res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.；assets文件夹下的文件不会被映射到R.java中，访问的时候需要AssetManager类。
 
 2. res/raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹
 
