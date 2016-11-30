@@ -12,7 +12,7 @@ date: 2016-11-28
 |序号|知识点|网址|
 |-----|:----|:----|
 |1|asset文件夹与raw文件夹的区别|[http://www.jb51.net/article/38531.htm](http://www.jb51.net/article/38531.htm)|
-|2|synchronized声明后参数的含义|[http://zhh9106.iteye.com/blog/2151791](http://zhh9106.iteye.com/blog/2151791)|
+|2|synchronized、对象锁与类锁|[http://zhh9106.iteye.com/blog/2151791](http://zhh9106.iteye.com/blog/2151791)|
 
 内容
 ===
@@ -45,7 +45,7 @@ InputStream is = am.open("filename");
   
 2. assets 文件夹是存放不进行编译加工的原生文件，即该文件夹里面的文件不会像 xml， java 文件被预编译，可以存放一些图片，html，js, css 等文件。    
   
-# 2、synchronized声明后参数的含义  
+# 2、synchronized、对象锁与类锁  
   
 ## java的内置锁  
 java的内置锁：每个java对象都可以用做一个实现同步的锁，这些锁成为内置锁。线程进入同步代码块或方法的时候会自动获得该锁，在退出同步代码块或方法时会释放该锁。获得内置锁的唯一途径就是进入这个锁的保护的同步代码块或方法。  
