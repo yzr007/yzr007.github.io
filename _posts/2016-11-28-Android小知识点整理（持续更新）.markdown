@@ -12,44 +12,61 @@ date: 2016-11-28
 |序号|知识点|网址|
 |-----|:----|:----|
 |1|asset文件夹与raw文件夹的区别|[http://www.jb51.net/article/38531.htm](http://www.jb51.net/article/38531.htm)|
+|2|synchronized声明后参数的含义|[http://zhh9106.iteye.com/blog/2151791](http://zhh9106.iteye.com/blog/2151791)|
 
 内容
 ===
-
-# 1、asset文件夹与raw文件夹的区别
-
-## res/raw和assets的相同点：
-
-两者目录下的文件在打包后会原封不动的保存在apk包中，不会被编译成二进制。
-
+  
+# 1、asset文件夹与raw文件夹的区别  
+  
+## res/raw和assets的相同点：  
+两者目录下的文件在打包后会原封不动的保存在apk包中，不会被编译成二进制。  
 <!--more-->
-## res/raw和assets的不同点：
+## res/raw和assets的不同点：  
+  
+1. res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.；assets文件夹下的文件不会被映射到R.java中，访问的时候需要AssetManager类。  
+2. res/raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹  
+  
+## 读取文件资源：  
 
-1. res/raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.；assets文件夹下的文件不会被映射到R.java中，访问的时候需要AssetManager类。
-
-2. res/raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹
-
-## 读取文件资源：
-
-1. 读取res/raw下的文件资源，通过以下方式获取输入流来进行写操作
-
-``` java
-InputStream is =getResources().openRawResource(R.id.filename); 
-
-```
-
-2. 读取assets下的文件资源，通过以下方式获取输入流来进行写操作
-
+1. 读取res/raw下的文件资源，通过以下方式获取输入流来进行写操作  
+``` java  
+InputStream is =getResources().openRawResource(R.id.filename);   
+```  
+  
+2. 读取assets下的文件资源，通过以下方式获取输入流来进行写操作  
 ``` java
 AssetManager am = null;  
 am = getAssets();  
-InputStream is = am.open("filename"); 
-
-```
+InputStream is = am.open("filename");    
+```  
 ## 注意
-1. Google的Android系统处理Assert有个bug，在AssertManager中不能处理单个超过1MB的文件，不然会报异常，raw没这个限制可以放个4MB的Mp3文件没问题。
+1. Google的Android系统处理Assert有个bug，在AssertManager中不能处理单个超过1MB的文件，不然会报异常，raw没这个限制可以放个4MB的Mp3文件没问题。   
+  
+2. assets 文件夹是存放不进行编译加工的原生文件，即该文件夹里面的文件不会像 xml， java 文件被预编译，可以存放一些图片，html，js, css 等文件。    
+  
+# 2、synchronized声明后参数的含义  
+  
+## java的内置锁  
+java的内置锁：每个java对象都可以用做一个实现同步的锁，这些锁成为内置锁。线程进入同步代码块或方法的时候会自动获得该锁，在退出同步代码块或方法时会释放该锁。获得内置锁的唯一途径就是进入这个锁的保护的同步代码块或方法。  
+java内置锁是一个互斥锁，这就是意味着最多只有一个线程能够获得该锁，当线程A尝试去获得线程B持有的内置锁时，线程A必须等待或者阻塞，知道线程B释放这个锁，如果B线程不释放这个锁，那么A线程将永远等待下去。  
 
-2. assets 文件夹是存放不进行编译加工的原生文件，即该文件夹里面的文件不会像 xml， java 文件被预编译，可以存放一些图片，html，js, css 等文件。
+对象的内置锁和对象的状态之间是没有内在的关联的，虽然大多数类都将内置锁用做一种有效的加锁机制，但对象的域并不一定通过内置锁来保护。当获取到与对象关联的内置锁时，并不能阻止其他线程访问该对象，当某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁。之所以每个对象都有一个内置锁，是为了免去显式地创建锁对象。  
+所以synchronized只是一个内置锁的加锁机制，当某个方法加上synchronized关键字后，就表明要获得该内置锁才能执行，并不能阻止其他线程访问不需要获得该内置锁的方法。  
+  
+## java的对象锁和类锁  
+java的对象锁和类锁：java的对象锁和类锁在锁的概念上基本上和内置锁是一致的，但是，两个锁实际是有很大的区别的，对象锁是用于对象实例方法，或者一个对象实例上的，类锁是用于类的静态方法或者一个类的class对象上的。我们知道，类的对象实例可以有很多个，但是每个类只有一个class对象，所以不同对象实例的对象锁是互不干扰的，但是每个类只有一个类锁。但是有一点必须注意的是，其实类锁只是一个概念上的东西，并不是真实存在的，它只是用来帮助我们理解锁定实例方法和静态方法的区别的   
+修饰非静态方法时是获得对象锁,等同于synchronized(this)，修饰静态方法时获得的是类锁，等同于synchroized(类.class)  
+对象锁和类锁是不同的锁  
 
-
+## 其他  
+String类型和Java中其他的复杂类型不同。在使用String型变量时，只要给这个变量赋一次值，Java就会创建个新的String类型的实例。  
+i++,i--,++i,--i都不是原子操作，都是线程非安全的  
+result = i++;先赋值再自增的实现过程是创建一个临时对象，在执行完自增操作后，将临时对象赋值给result  
+``` java  
+int i = 0;
+i = i++;
+System.out.println(i+"");
+```  
+输出结果为 0  
 
