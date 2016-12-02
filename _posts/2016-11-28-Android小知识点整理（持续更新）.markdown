@@ -100,8 +100,7 @@ toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法
         }
         return super.onOptionsItemSelected(item);
     }  
-```  
-  
+```  
 
 原理通过查看源码可知，当item的id为android.R.id.home时（还有其他条件，这里不作考虑），ActionBarDrawerToggle会执行toggle()  
 
