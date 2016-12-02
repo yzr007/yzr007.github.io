@@ -71,6 +71,7 @@ i++,i--,++i,--i都不是原子操作，都是线程非安全的  
 result = i++;先赋值再自增的实现过程是创建一个临时对象，在执行完自增操作后，将临时对象赋值给result  
 
 ``` java   
+
 int i = 0;
 i = i++;
 System.out.println(i+"");  
@@ -101,6 +102,7 @@ toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法
         }
         return super.onOptionsItemSelected(item);
     }  
+    
 ```  
 
 原理通过查看源码可知，当item的id为android.R.id.home时（还有其他条件，这里不作考虑），ActionBarDrawerToggle会执行toggle()  
