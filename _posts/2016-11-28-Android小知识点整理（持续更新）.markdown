@@ -91,9 +91,8 @@ ActionBarDrawerToggle.syncState()方法是指同步drawerlayout的开过状态�
 ActionBarDrawerToggle.onOptionsItemSelected(item)与ActionBarDrawerToggle.toggle()  
 toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法  
 所以官方推荐的drawerlayout开关状态切换的实现方式是：
-
-``` java
-
+  
+``` java  
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mDrawerToggle.onOptionsItemSelected(item)){//查看源码可知，menuId为android.R.id.home，执行私有方法toggle();
@@ -101,8 +100,8 @@ toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法
         }
         return super.onOptionsItemSelected(item);
     }  
-    
 ```  
+  
 
 原理通过查看源码可知，当item的id为android.R.id.home时（还有其他条件，这里不作考虑），ActionBarDrawerToggle会执行toggle()  
 
