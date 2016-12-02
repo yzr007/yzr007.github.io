@@ -74,12 +74,11 @@ result = i++;先赋值再自增的实现过程是创建一个临时对象，在�
 int i = 0;
 i = i++;
 System.out.println(i+"");
-```  
+```    
 
 输出结果为 0  
 
 
-  
 # 3、ActionBarDrawerToggle常用方法解析
 
 
