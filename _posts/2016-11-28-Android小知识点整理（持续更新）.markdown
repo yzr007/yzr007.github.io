@@ -106,14 +106,14 @@ toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法
 
 # 4、DrawerLayout的openDrawer与closeDrawer参数解析
 
-openDrawer(View drawerView) 
-openDrawer(View drawerView, boolean animate) 
-openDrawer(int gravity) 
-openDrawer(int gravity, boolean animate) 
-closeDrawer(View drawerView) 
-closeDrawer(View drawerView, boolean animate) 
-closeDrawer(int gravity) 
-closeDrawer(int gravity, boolean animate)   
+openDrawer(View drawerView)  
+openDrawer(View drawerView, boolean animate)  
+openDrawer(int gravity)  
+openDrawer(int gravity, boolean animate)  
+closeDrawer(View drawerView)  
+closeDrawer(View drawerView, boolean animate)  
+closeDrawer(int gravity)  
+closeDrawer(int gravity, boolean animate)  
 
 drawerView：drawerlayout布局分为主布局（内容）和侧滑菜单两部分，drawerView是指侧滑菜单的根布局或者根View  
 
