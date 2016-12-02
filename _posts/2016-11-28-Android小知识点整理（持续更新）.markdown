@@ -13,6 +13,9 @@ date: 2016-11-28
 |-----|:----|:----|
 |1|asset文件夹与raw文件夹的区别|[http://www.jb51.net/article/38531.htm](http://www.jb51.net/article/38531.htm)|
 |2|synchronized、对象锁与类锁|[http://zhh9106.iteye.com/blog/2151791](http://zhh9106.iteye.com/blog/2151791)|
+|3|ActionBarDrawerToggle.onOptionsItemSelected(item)|无|
+|4|DrawerLayout的openDrawer与closeDrawer参数解析|无|
+
 
 内容
 ===
@@ -75,3 +78,48 @@ System.out.println(i+"");
 
 输出结果为 0  
 
+
+  
+# 3、ActionBarDrawerToggle常用方法解析
+
+
+ActionBarDrawerToggle是DrawerLayout.DrawerListener的实现类，可以通过addDrawerListener()方法对DrawerLayout进行设置（setDrawerListener()已经废弃）  
+
+ActionBarDrawerToggle的构造方法中的openDrawerContentDescRes与closeDrawerContentDescRes是描述开关状态的字符串，用作辅助功能（盲人提示）中 
+  
+
+ActionBarDrawerToggle.syncState()方法是指同步drawerlayout的开过状态，google示例在onPostCreate()方法中调用，onPostCreate()方法在生命周期onCreate()方法后执行，说明Activity彻底启动起来。源码注释中没有对推荐在onPostCreate()方法中调用做过多解释，并表示应该在任何可能drawerlayout状态改变但ActionBarDrawerToggle没有得到通知的情况下调用。
+
+ActionBarDrawerToggle.onOptionsItemSelected(item)与ActionBarDrawerToggle.toggle()  
+toggle()方法是切换drawerlayout开关状态的方法，但是是私有方法  
+所以官方推荐的drawerlayout开关状态切换的实现方式是：
+
+``` java
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mDrawerToggle.onOptionsItemSelected(item)){//查看源码可知，menuId为android.R.id.home，执行私有方法toggle();
+         return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }  
+```  
+
+原理通过查看源码可知，当item的id为android.R.id.home时（还有其他条件，这里不作考虑），ActionBarDrawerToggle会执行toggle()  
+
+# 4、DrawerLayout的openDrawer与closeDrawer参数解析
+
+openDrawer(View drawerView) 
+openDrawer(View drawerView, boolean animate) 
+openDrawer(int gravity) 
+openDrawer(int gravity, boolean animate) 
+closeDrawer(View drawerView) 
+closeDrawer(View drawerView, boolean animate) 
+closeDrawer(int gravity) 
+closeDrawer(int gravity, boolean animate)   
+
+drawerView：drawerlayout布局分为主布局（内容）和侧滑菜单两部分，drawerView是指侧滑菜单的根布局或者根View  
+
+animate:是否使用动画显示侧滑菜单的开关，默认true  
+
+gravity:侧滑菜单布局的gravity设置为left和right将会决定侧滑菜单在左侧还是右侧，gravity参数是Gravity.LEFT或者Gravity.RIGHT，表明操作的是左侧菜单还是右侧菜单，如果没有右侧菜单，参数却是Gravity.RIGHT，运行将报错崩溃
