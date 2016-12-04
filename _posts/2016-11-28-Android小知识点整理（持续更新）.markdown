@@ -35,14 +35,14 @@ date: 2016-11-28
 1. 读取res/raw下的文件资源，通过以下方式获取输入流来进行写操作  
 ``` java  
 InputStream is =getResources().openRawResource(R.id.filename);   
-```  
+```   
   
 2. 读取assets下的文件资源，通过以下方式获取输入流来进行写操作  
-``` java
+``` java  
 AssetManager am = null;  
 am = getAssets();  
 InputStream is = am.open("filename");    
-```  
+```   
 ## 注意
 1. Google的Android系统处理Assert有个bug，在AssertManager中不能处理单个超过1MB的文件，不然会报异常，raw没这个限制可以放个4MB的Mp3文件没问题。   
   
@@ -119,4 +119,25 @@ drawerView：drawerlayout布局分为主布局（内容）和侧滑菜单两部�
 
 animate:是否使用动画显示侧滑菜单的开关，默认true  
 
-gravity:侧滑菜单布局的gravity设置为left和right将会决定侧滑菜单在左侧还是右侧，gravity参数是Gravity.LEFT或者Gravity.RIGHT，表明操作的是左侧菜单还是右侧菜单，如果没有右侧菜单，参数却是Gravity.RIGHT，运行将报错崩溃
+gravity:侧滑菜单布局的gravity设置为left和right将会决定侧滑菜单在左侧还是右侧，gravity参数是Gravity.LEFT或者Gravity.RIGHT，表明操作的是左侧菜单还是右侧菜单，如果没有右侧菜单，参数却是Gravity.RIGHT，运行将报错崩溃  
+
+# 5、Scanner实现优雅的InputString转String  
+
+``` java   
+public static String inputStream2String(InputStream in){
+        Scanner scanner = new Scanner(in, "UTF-8");
+        String result = scanner.useDelimiter("\\A").next();
+        scanner.close();
+        return result;
+    }  
+```  
+
+这种写法比传统的BufferedReader一行一行读和自定义buffer[](缓冲区)大小，循环readBytes这两种写法优雅很多，使用Apache commons IOUtils的IOUtils.toString(InputStream)和谷歌的guava的CharStreams .toString(InputStream)虽然写法同样简洁，但是要导入第三方库，这里不做过多介绍。  
+
+java.util.Scanner是Java5的新特征，是一个可以使用正则表达式来解析基本类型和字符串的简单文本扫描器。  
+特点是：  
+>* 多种输入，File,input,System.in,String等  
+>* 与正则结合使用  
+>* 实现了Iterator接口  
+
+"\\A"是"\A"的转义表达，"\A"是输入开始的正则表达式
