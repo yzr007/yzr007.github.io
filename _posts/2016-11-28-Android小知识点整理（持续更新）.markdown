@@ -34,13 +34,11 @@ date: 2016-11-28
 ## 读取文件资源：  
 
 1. 读取res/raw下的文件资源，通过以下方式获取输入流来进行写操作  
-
 ``` java  
 InputStream is =getResources().openRawResource(R.id.filename);  
 ```  
   
 2. 读取assets下的文件资源，通过以下方式获取输入流来进行写操作  
-
 ``` java  
 AssetManager am = null;  
 am = getAssets();  
