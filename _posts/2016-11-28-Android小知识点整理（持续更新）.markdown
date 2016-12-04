@@ -35,16 +35,17 @@ date: 2016-11-28
 
 1. 读取res/raw下的文件资源，通过以下方式获取输入流来进行写操作  
 
-``` java   
-InputStream is =getResources().openRawResource(R.id.filename);   
-```   
+``` java  
+InputStream is =getResources().openRawResource(R.id.filename);  
+```  
+
   
 2. 读取assets下的文件资源，通过以下方式获取输入流来进行写操作  
 
 ``` java  
 AssetManager am = null;  
 am = getAssets();  
-InputStream is = am.open("filename");    
+InputStream is = am.open("filename");  
 ```   
 ## 注意
 1. Google的Android系统处理Assert有个bug，在AssertManager中不能处理单个超过1MB的文件，不然会报异常，raw没这个限制可以放个4MB的Mp3文件没问题。   
