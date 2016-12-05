@@ -155,7 +155,9 @@ public void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.main);  
 }  
 ```   
-  
+
+
+
 在ContextThemeWrapper源码的initializeTheme()方法中。有如下代码：  
   
 ``` java  
