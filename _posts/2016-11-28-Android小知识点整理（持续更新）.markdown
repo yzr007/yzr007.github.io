@@ -153,7 +153,6 @@ public void onCreate(Bundle savedInstanceState) {
     this.setTheme(R.style.Default);        
     super.onCreate(savedInstanceState);  
     setContentView(R.layout.main);  
-}  
-```   
-
+}  
+```  
 
