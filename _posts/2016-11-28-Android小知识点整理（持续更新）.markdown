@@ -153,7 +153,7 @@ setTheme()不起作用可能是因为没有写在onCreate()前，正确的写法
         this.setTheme(R.style.Default);        
         super.onCreate(savedInstanceState);  
         setContentView(R.layout.main);  
-    }  
+    }  
     
 ```   
 
