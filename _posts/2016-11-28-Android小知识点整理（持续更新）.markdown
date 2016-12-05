@@ -156,3 +156,12 @@ public void onCreate(Bundle savedInstanceState) {
 }  
 ```  
 
+
+在ContextThemeWrapper源码的initializeTheme()方法中。有如下代码：   
+  
+``` java  
+final boolean first = mTheme == null;
+if (first) {...  
+```  
+
+不知道和这个代码有没有关系  
