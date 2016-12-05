@@ -147,7 +147,7 @@ java.util.Scanner是Java5的新特征，是一个可以使用正则表达式来�
 # 6、setTheme()不起作用  
 
 setTheme()不起作用可能是因为没有写在onCreate()前，正确的写法是：  
-
+  
 ``` java  
 public void onCreate(Bundle savedInstanceState) {    
     this.setTheme(R.style.Default);        
