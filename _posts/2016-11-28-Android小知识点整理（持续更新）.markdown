@@ -203,9 +203,9 @@ private X509TrustManager systemDefaultTrustManager() {
     } catch (GeneralSecurityException e) {
       throw new AssertionError(); // The system has no TLS. Just give up.
     }
-  }
-  
-```  
+  }  
+
+```  
 
 核心代码就是trustManagerFactory.init((KeyStore) null)，此时初始化的就是系统内置的根证书，根证书中有CA认证的公钥，可以验证服务端证书的合法性，因为CA认证就是对服务端证书签名。这部分可以参考[这里]（http://www.jianshu.com/p/0d59d2216c64）理解。
 
