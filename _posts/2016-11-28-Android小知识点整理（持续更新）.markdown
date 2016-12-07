@@ -207,7 +207,7 @@ private X509TrustManager systemDefaultTrustManager() {
 
 ```  
 
-核心代码就是trustManagerFactory.init((KeyStore) null)，此时初始化的就是系统内置的根证书，根证书中有CA认证的公钥，可以验证服务端证书的合法性，因为CA认证就是对服务端证书签名。这部分可以参考[这里]（http://www.jianshu.com/p/0d59d2216c64）理解。
+核心代码就是trustManagerFactory.init((KeyStore) null)，此时初始化的就是系统内置的根证书，根证书中有CA认证的公钥，可以验证服务端证书的合法性，因为CA认证就是对服务端证书签名。这部分可以参考[这里](http://www.jianshu.com/p/0d59d2216c64)理解。
 
 所以，如果只是实现单向认证的Https,而且证书是CA认证的，那么OKHttp是默认支持的，不需要做任何设置。
 
