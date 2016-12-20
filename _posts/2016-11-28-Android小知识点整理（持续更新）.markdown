@@ -255,8 +255,9 @@ FragmentPagerAdapter是PagerAdapter的子类，适用fragment数量较小的场�
     
 ## 注意和ViewPager.setOffscreenPageLimit方法的区别
     
-    setOffscreenPageLimit(n)是保存当前item前后n页不去destroyItem,所以只要在当前fragment前后n页的fragment是不会再次执行instantiateItem方法的。FragmentPagerAdapter不设置setOffscreenPageLimit的话是会移除不在展示页前后1页的fragmen的（默认OffscreenPageLimit = 1），只不过下次加载时会从缓存中取出fragment实例而已，但是两者并没有联系和冲突，可以用时使用，只不过在逻辑上容易混淆。
+    setOffscreenPageLimit(n)是保存当前item前后n页不去destroyItem,所以只要在当前fragment前后n页的fragment是不会再次执行instantiateItem方法的。FragmentPagerAdapter不设置setOffscreenPageLimit的话是会移除不在展示页前后1页的fragmen的（默认OffscreenPageLimit = 1），只不过下次加载时会从缓存中取出fragment实例而已，但是两者并没有联系和冲突，可以用时使用，只不过在逻辑上容易混淆。  
     
+    
     使用FragmentPagerAdapter每个fragment只会执行一次onCreate方法，每次instantiateItem时，会执行一次onCreateView方法，也就是多次onCreateView方法，如果4个Item（Fragment）的ViewPager设置setOffscreenPageLimit(3)，则所有fragment只要初始化则不会移除，只会执行一次onCreate和一次onCreateView方法.
     
     
