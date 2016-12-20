@@ -212,4 +212,49 @@ private X509TrustManager systemDefaultTrustManager() {
 所以，如果只是实现单向认证的Https,而且证书是CA认证的，那么OKHttp是默认支持的，不需要做任何设置。
 
 
-    
+# 8、FragmentPagerAdapter
+
+FragmentPagerAdapter是PagerAdapter的子类，适用fragment数量较小的场景，因为使用此Adater会缓存fragment实例，源码如下：
+
+``` java
+
+ @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        if (mCurTransaction == null) {
+            mCurTransaction = mFragmentManager.beginTransaction();
+        }
+
+        final long itemId = getItemId(position);
+
+        // Do we already have this fragment?
+        String name = makeFragmentName(container.getId(), itemId);
+        Fragment fragment = mFragmentManager.findFragmentByTag(name);
+        if (fragment != null) {
+            if (DEBUG) Log.v(TAG, "Attaching item #" + itemId + ": f=" + fragment);
+            mCurTransaction.attach(fragment);
+        } else {
+            fragment = getItem(position);
+            if (DEBUG) Log.v(TAG, "Adding item #" + itemId + ": f=" + fragment);
+            mCurTransaction.add(container.getId(), fragment,
+                    makeFragmentName(container.getId(), itemId));
+        }
+        if (fragment != mCurrentPrimaryItem) {
+            fragment.setMenuVisibility(false);
+            fragment.setUserVisibleHint(false);
+        }
+
+        return fragment;
+    }
+    
+    ```
+    
+    
+    可以看出，初始化的时候会通过mFragmentManager.findFragmentByTag(name)先去取fragment实例，而不是getItem()方法。
+    
+    ## 注意和ViewPager.setOffscreenPageLimit方法的区别
+    
+    setOffscreenPageLimit(n)是保存当前item前后n页不去destroyItem,所以只要在当前fragment前后n页的fragment是不会再次执行instantiateItem方法的。
+    
+    使用FragmentPagerAdapter每个fragment只会执行一次onCreate方法，每次instantiateItem时，会执行一次onCreateView方法，也就是多次onCreateView方法，如果4个Item（Fragment）的ViewPager设置setOffscreenPageLimit(3)，则所有fragment只要初始化则不会移除，只会执行一次onCreate和一次onCreateView方法.
+    
+    
